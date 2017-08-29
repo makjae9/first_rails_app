@@ -6,10 +6,13 @@ class ArticlesController < ApplicationController
 
 	def show
 		@article = Article.find(params[:id])
+		@comment = Comment.new
+		@comment.article_id = @article.id
 	end
 
 	def new
 		@article = Article.new
+
 	end
 
 	def create
@@ -23,7 +26,7 @@ class ArticlesController < ApplicationController
 	def destroy
 		@article = Article.destroy(params[:id])
 
-		flash.notice = "Article #{@article.title}' Destroyed!"
+		flash.notice = "Article '#{@article.title}' Destroyed!"
 		redirect_to articles_path
 	end
 
